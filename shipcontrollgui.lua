@@ -41,5 +41,8 @@ function audio_panel_play_button_click()
     GUI.alert("Play")
 end
 
+hideAll()
+showStartpage()
+
 workspace:draw()
 workspace:start()
