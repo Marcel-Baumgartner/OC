@@ -94,4 +94,9 @@ modem.open(44)
 event.listen("modem_message", messageReceived)
 
 workspace:draw()
-workspace:start()
+local status, error = pcall(workspace:start())
+
+if status == false
+then
+    GUI.alert("Error: " .. tostring(error))
+end
