@@ -36,14 +36,13 @@ end
 -- Other
 
 function fdraw()
-    workspace:draw(true)
+    --workspace:draw(true)
 end
 
 -- Callbacks
 
 function startpage_open_audio_button_click ()
     showAudioPanel()
-    
 end
 
 function audio_panel_play_button_click()
