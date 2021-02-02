@@ -79,9 +79,6 @@ playButton.onTouch = audioPlay
 
 table.insert(audioNetworkLog.lines, "Loggin Audio System Traffic")
 
-disableAll()
-openStartpage()
-
 --------------------------------------------------------------------------------
 
 -- Open Ports
@@ -93,7 +90,7 @@ modem.open(44)
 
 event.listen("modem_message", messageReceived)
 
-disableAll()
+openStartpage()
 workspace:draw()
 
 local status, error = pcall(workspace:start())
