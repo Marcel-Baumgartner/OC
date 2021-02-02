@@ -12,24 +12,30 @@ startpage_open_audio_button.onTouch = startpage_open_audio_button_click
 
 -- Audio Panel
 
-local audio_panel_play_button = workspace:addChild(GUI.framedButton(2, 2, 4, 3, 0xFFFFFF, 0xFFFFFF, 0x6b9fff, 0x6b9fff, "Play"))
+local audio_panel_play_button = workspace:addChild(GUI.framedButton(2, 4, 30, 3, 0xFFFFFF, 0xFFFFFF, 0x6b9fff, 0x6b9fff, "Play"))
 audio_panel_play_button.onTouch = audio_panel_play_button_click
 
 -- Panel Switcher
 
 function hideAll()
     startpage_open_audio_button.hidden = true
-    workspace:draw()
+    fdraw()
 end
 function showStartpage()
     hideAll()
     startpage_open_audio_button.hidden = false
-    workspace:draw()
+    fdraw()
 end
 function showAudioPanel()
     hideAll()
     audio_panel_play_button.hidden = false
-    workspace:draw()
+    fdraw()
+end
+
+-- Other
+
+function fdraw()
+    workspace:draw(true)
 end
 
 -- Callbacks
@@ -45,5 +51,5 @@ end
 hideAll()
 showStartpage()
 
-workspace:draw()
+fdraw()
 workspace:start()
