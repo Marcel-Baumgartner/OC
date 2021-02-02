@@ -43,6 +43,7 @@ end
 
 function startpage_open_audio_button_click ()
     showAudioPanel()
+    GUI.alert("Debug")
 end
 
 function audio_panel_play_button_click()
