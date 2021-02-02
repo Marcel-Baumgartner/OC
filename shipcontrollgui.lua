@@ -14,23 +14,40 @@ workspace:addChild(GUI.panel(1, 1, workspace.width, workspace.height, 0xb0b0b0))
 local audioButton = workspace:addChild(GUI.framedButton(2, 2, 30, 3, 0xFFFFFF, 0xFFFFFF, 0x4960de, 0x4960de, "Audio"))
 -- Audio System
 local playButton = workspace:addChild(GUI.framedButton(2, 4, 30, 3, 0xFFFFFF, 0xFFFFFF, 0x4960de, 0x4960de, "Play"))
+local stopButton = workspace:addChild(GUI.framedButton(2, 4, 30, 3, 0xFFFFFF, 0xFFFFFF, 0x4960de, 0x4960de, "Stop"))
+local audioBackButton = workspace:addChild(GUI.framedButton(2, 30, 30, 3, 0xFFFFFF, 0xFFFFFF, 0x4960de, 0x4960de, "Back"))
 local audioNetworkLog = workspace:addChild(GUI.textBox(60, 2, 100, 100, 0xFFFFFF, 0x4960de, {}, 1, 1, 0))
 
 -- Functions
 
-function openAudio()
+function disableAll()
+    playButton.hidden = true
+    audioButton.hidden = true
+    audioNetworkLog = true
+    stopButton.hidden = true
+    audioBackButton.hidden = true
 
--- Other
-playButton.hidden = false
--- Self
-audioButton.hidden = true
-audioNetworkLog.hidden = false
-
-workspace:draw()
-
+    workspace:draw()
 end
 
-function playSound()
+-- Menues
+
+function openAudio()
+
+    disableAll()
+    -- Self
+    audioNetworkLog.hidden = false
+    playButton.hidden = false
+    audioBackButton.hidden = false
+
+    workspace:draw()
+end
+function openStartpage()
+    disableAll()
+    audioButton.hidden = false
+end
+
+function audioPlay()
     
 end
 
@@ -58,7 +75,7 @@ audioButton.hidden = false
 
 -- Audio Controll
 
-playButton.onTouch = playSound
+playButton.onTouch = audioPlay
 playButton.hidden = true
 
 table.insert(audioNetworkLog.lines, "Loggin Audio System Traffic")
