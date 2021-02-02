@@ -36,7 +36,7 @@ end
 -- Other
 
 function fdraw()
-    --workspace:draw(true)
+    workspace:draw(true)
 end
 
 -- Callbacks
