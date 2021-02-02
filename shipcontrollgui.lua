@@ -19,6 +19,7 @@ audio_panel_play_button.onTouch = audio_panel_play_button_click
 
 function hideAll()
     startpage_open_audio_button.hidden = true
+    workspace:draw()
 end
 function showStartpage()
     hideAll()
