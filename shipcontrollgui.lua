@@ -69,17 +69,17 @@ end
 
 -- Main Menue
 audioButton.onTouch = openAudio
-audioButton.hidden = false
 
 -- System Settings
 
 -- Audio Controll
 
 playButton.onTouch = audioPlay
-playButton.hidden = true
 
 table.insert(audioNetworkLog.lines, "Loggin Audio System Traffic")
-audioNetworkLog.hidden = true
+
+disableAll()
+openStartpage()
 
 --------------------------------------------------------------------------------
 
