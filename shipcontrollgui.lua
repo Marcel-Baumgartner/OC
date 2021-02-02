@@ -93,7 +93,9 @@ modem.open(44)
 
 event.listen("modem_message", messageReceived)
 
+disableAll()
 workspace:draw()
+
 local status, error = pcall(workspace:start())
 
 if status == false
