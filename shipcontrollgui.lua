@@ -45,6 +45,7 @@ end
 function openStartpage()
     disableAll()
     audioButton.hidden = false
+    workspace:draw()
 end
 
 function audioPlay()
