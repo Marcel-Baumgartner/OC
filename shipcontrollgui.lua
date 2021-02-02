@@ -23,7 +23,7 @@ local audioNetworkLog = workspace:addChild(GUI.textBox(60, 2, 100, 100, 0xFFFFFF
 function disableAll()
     playButton.hidden = true
     audioButton.hidden = true
-    audioNetworkLog = true
+    audioNetworkLog.hidden = true
     stopButton.hidden = true
     audioBackButton.hidden = true
 
@@ -91,7 +91,6 @@ modem.open(44)
 event.listen("modem_message", messageReceived)
 
 openStartpage()
-workspace:draw()
 
 local status, error = pcall(workspace:start())
 
