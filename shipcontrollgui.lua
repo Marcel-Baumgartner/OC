@@ -1,100 +1,20 @@
 local GUI = require("GUI")
-local component = require("component")
-local modem = component.modem
-local event = require("event")
 
---------------------------------------------------------------------------------
-
--- GUI
+-- Init
 
 local workspace = GUI.workspace()
-workspace:addChild(GUI.panel(1, 1, workspace.width, workspace.height, 0xb0b0b0))
+workspace:addChild(GUI.panel(1, 1, workspace.width, workspace.height, 0xe6e6e6))
 
--- Main Menue
-local audioButton = workspace:addChild(GUI.framedButton(2, 2, 30, 3, 0xFFFFFF, 0xFFFFFF, 0x4960de, 0x4960de, "Audio"))
--- Audio System
-local playButton = workspace:addChild(GUI.framedButton(2, 4, 30, 3, 0xFFFFFF, 0xFFFFFF, 0x4960de, 0x4960de, "Play"))
-local stopButton = workspace:addChild(GUI.framedButton(2, 4, 30, 3, 0xFFFFFF, 0xFFFFFF, 0x4960de, 0x4960de, "Stop"))
-local audioBackButton = workspace:addChild(GUI.framedButton(2, 30, 30, 3, 0xFFFFFF, 0xFFFFFF, 0x4960de, 0x4960de, "Back"))
-local audioNetworkLog = workspace:addChild(GUI.textBox(60, 2, 100, 100, 0xFFFFFF, 0x4960de, {}, 1, 1, 0))
+-- Startpage
 
--- Functions
+local startpage_open_audio_button = workspace:addChild(GUI.framedButton(2, 22, 30, 3, 0xFFFFFF, 0xFFFFFF, 0x6b9fff, 0x6b9fff, "Open Audio"))
+startpage_open_audio_button.onTouch = startpage_open_audio_button_click
 
-function disableAll()
-    playButton.hidden = true
-    audioButton.hidden = true
-    audioNetworkLog.hidden = true
-    stopButton.hidden = true
-    audioBackButton.hidden = true
+-- Callbacks
 
-    workspace:draw()
+function startpage_open_audio_button_click ()
+    GUI.alert("Audio Not found")
 end
 
--- Menues
-
-function openAudio()
-
-    disableAll()
-    -- Self
-    audioNetworkLog.hidden = false
-    playButton.hidden = false
-    audioBackButton.hidden = false
-
-    workspace:draw()
-end
-function openStartpage()
-    disableAll()
-    audioButton.hidden = false
-    workspace:draw()
-end
-
-function audioPlay()
-    
-end
-
--- Events
-
-function messageReceived (_, to, from, port, _, message)
-    
-    if port == 43
-    then
-        table.insert(audioNetworkLog.lines, "Status [" .. tostring(from) .. "] > " .. tostring(message))
-    end
-    if port == 44
-    then
-        table.insert(audioNetworkLog.lines, "Command [" .. tostring(from) .. "] > " .. tostring(message))
-    end
-
-    workspace:draw()
-end
-
--- Main Menue
-audioButton.onTouch = openAudio
-
--- System Settings
-
--- Audio Controll
-
-playButton.onTouch = audioPlay
-
-table.insert(audioNetworkLog.lines, "Loggin Audio System Traffic")
-
---------------------------------------------------------------------------------
-
--- Open Ports
-
-modem.open(43)
-modem.open(44)
-
--- Register Events
-
-event.listen("modem_message", messageReceived)
-
-openStartpage()
-
-local status, error = pcall(workspace:start())
-
-if status == false
-then
-    GUI.alert("Error: " .. tostring(error))
-end
+workspace:draw()
+workspace:start()
